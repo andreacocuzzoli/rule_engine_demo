@@ -1,0 +1,17 @@
+import com.loyalty.Reward.model.Reward;
+import com.loyalty.Reward.kafkaModel.EventEnriched;
+import com.loyalty.Reward.model.*
+dialect  "mvel"
+
+rule "FOOD and amount >150"
+    when
+        reward:Reward();
+        event:EventEnriched(temp:amount,amount>150)
+        a:Shop() from event.shop
+        b:ShopCategory(name == "FOOD") from a.category
+    then
+      	reward.setAmount(reward.getAmount() + 5d );
+      	reward.getRewardedPromo().add("FOOD and amount >150");
+    end;
+
+

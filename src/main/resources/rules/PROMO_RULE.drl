@@ -1,0 +1,34 @@
+import com.loyalty.Reward.model.Reward;
+import com.loyalty.Reward.kafkaModel.EventEnriched;
+import com.loyalty.Reward.model.*
+dialect  "mvel"
+
+rule "Weekend TECH"
+    when
+        reward:Reward();
+        event:EventEnriched(isWeekend == true, temp:amount)
+        a:Shop() from event.shop
+        b:ShopCategory(name == "TECH") from a.category
+    then
+      	reward.setAmount(reward.getAmount() + (double)(Math.round((temp/100*20)*100) /100) );
+      	reward.getRewardedPromo().add("Weekend TECH");
+    end;
+rule "No Weekend TECH"
+    when
+        reward:Reward();
+        event:EventEnriched(isWeekend == false,temp:amount)
+        a:Shop() from event.shop
+        b:ShopCategory(name == "TECH") from a.category
+    then
+      	reward.setAmount(reward.getAmount() + (double) (Math.round( (temp/100*10)*100) /100) );
+      	reward.getRewardedPromo().add("TECH Promo");
+    end;
+rule "More than 100 not WEEKEND"
+    when
+        reward:Reward();
+        event:EventEnriched(isWeekend == false,amount >100,amount:amount)
+    then
+      	reward.setAmount(reward.getAmount() + 20d);
+      	reward.getRewardedPromo().add("More than 100 not WEEKEND");
+    end;
+
