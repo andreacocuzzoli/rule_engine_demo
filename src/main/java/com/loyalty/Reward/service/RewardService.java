@@ -2,6 +2,7 @@ package com.loyalty.Reward.service;
 
 import com.loyalty.Reward.kafkaModel.EventEnriched;
 import com.loyalty.Reward.model.Reward;
+import com.loyalty.Reward.repository.RewardedEventRepository;
 import org.kie.api.runtime.KieContainer;
 import org.kie.api.runtime.KieSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,9 @@ public class RewardService {
 
     @Autowired
     private KieContainer kieContainer;
+    @Autowired
+    RewardedEventRepository rewardedEventRepository;
+
 
     public Reward calculateReward(EventEnriched event) {
         Reward reward = new Reward();
@@ -23,4 +27,6 @@ public class RewardService {
         kieSession.dispose();
         return reward;
     }
+
+
 }

@@ -1,7 +1,6 @@
 package com.loyalty.Reward.kafkaModel;
 
 
-import com.loyalty.Reward.model.ShopCategory;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 

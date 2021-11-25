@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
-@Entity(name = "Reward")
+@Entity(name = "RewardedEvent")
 @Table(name = "REWARDED_EVENt")
 @Data
 @NoArgsConstructor

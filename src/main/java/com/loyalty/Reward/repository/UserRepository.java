@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -13,4 +14,7 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 
     @Query("SELECT u from User u where u.name= :name and u.surname = :surname")
      Optional<User> findUserByNameAndSurname (@Param("name") String name, @Param("surname") String surname);
+
+    @Query("SELECT u from User u where upper(concat(u.name,' ',u.surname)) like concat('%',upper(:query),'%')")
+    List<User> findUserByQuery (@Param("query") String query);
 }

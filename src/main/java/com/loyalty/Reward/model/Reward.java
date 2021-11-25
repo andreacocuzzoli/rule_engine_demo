@@ -1,6 +1,5 @@
 package com.loyalty.Reward.model;
 
-import com.loyalty.Reward.kafkaModel.Event;
 import com.loyalty.Reward.kafkaModel.EventEnriched;
 import lombok.*;
 

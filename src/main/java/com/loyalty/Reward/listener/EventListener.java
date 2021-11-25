@@ -2,10 +2,6 @@ package com.loyalty.Reward.listener;
 
 
 import com.loyalty.Reward.assembler.EventEnrichedAssembler;
-import com.loyalty.Reward.assembler.RewardedEventAssembler;
-import com.loyalty.Reward.assembler.UserAssembler;
-import com.loyalty.Reward.entity.RewardedEvent;
-import com.loyalty.Reward.entity.User;
 import com.loyalty.Reward.kafkaModel.Event;
 import com.loyalty.Reward.kafkaModel.EventEnriched;
 import com.loyalty.Reward.model.Reward;
@@ -18,9 +14,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Component;
-
-import java.math.RoundingMode;
-import java.text.DecimalFormat;
 
 @Component
 public class EventListener {
